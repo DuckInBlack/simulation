@@ -11,4 +11,6 @@ public class Components {
     public static ParameterModel hareParameter;
     public static ParameterModel foxParameter;
     public static JLabel timeLabel;
+    public static  JTextArea textArea;
 }
+

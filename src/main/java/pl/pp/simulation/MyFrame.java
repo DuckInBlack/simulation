@@ -9,6 +9,7 @@ import static pl.pp.simulation.ProgramData.*;
 
 public class MyFrame extends JFrame {
 
+
     public MyFrame() {
         setTitle("Sumulacja drapieżnik - ofiara");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,16 +19,8 @@ public class MyFrame extends JFrame {
         JPanel controlPanel = getControlPanel();
         JScrollPane scrollPane = getScrollPane();
 
-        timer = new Timer(40, e -> {
-            steps++;
-            timeLabel.setText("Czas: " + steps);
-            for (Hare hare : hareList) {
-                hare.move();
-            }
-            myComponent.repaint();
+        timer = new Step();
 
-
-        });
         add(myComponent);
         add(controlPanel, BorderLayout.EAST);
         add(scrollPane, BorderLayout.SOUTH);
@@ -35,7 +28,7 @@ public class MyFrame extends JFrame {
     }
 
     private JScrollPane getScrollPane() {
-        JTextArea textArea = new JTextArea();
+        textArea = new JTextArea();
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(ProgramData.frameWidth, ProgramData.frameHeight - ProgramData.maxHeight - 50));
