@@ -1,9 +1,9 @@
 package pl.pp.simulation;
 
-import pl.pp.simulation.ProgramData;
-
 import javax.swing.*;
 import java.awt.*;
+
+import static pl.pp.simulation.ProgramData.*;
 
 public class MyComponent extends JComponent {
     public MyComponent() {
@@ -17,6 +17,13 @@ public class MyComponent extends JComponent {
         Rectangle limit = new Rectangle(0,0, ProgramData.maxWidth, ProgramData.maxHeight);
         graphics2D.setPaint(Color.LIGHT_GRAY);
         graphics2D.fill(limit);
+
+        for(Hare hare : hareList){
+            hare.draw(graphics2D);
+        }
+        for(Grass grass : grassList){
+            grass.draw(graphics2D);
+        }
 
     }
 

@@ -9,6 +9,7 @@ import static pl.pp.simulation.ProgramData.*;
 
 public class MyFrame extends JFrame {
 
+
     public MyFrame() {
         setTitle("Sumulacja drapieżnik - ofiara");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,12 +75,17 @@ public class MyFrame extends JFrame {
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
             timer.stop();
+            hareList.clear();
+            grassList.clear();
+
             steps = 0;
             timeLabel.setText("Czas: 0");
 
             grassParameter.setEditable(true);
             hareParameter.setEditable(true);
             foxParameter.setEditable(true);
+
+
         });
     }
 
@@ -99,6 +105,17 @@ public class MyFrame extends JFrame {
         startButton = new JButton("Start");
         startButton.setEnabled(true);
         startButton.addActionListener(e -> {
+            if (!started) {
+                for (int i = 0; i < hareParameter.getValue(); i++) {
+                    hareList.add(new Hare());
+                }
+            }
+            if (!started) {
+                for (int i = 0; i < grassParameter.getValue(); i++) {
+                    grassList.add(new Grass());
+                }
+            }
+
             running = true;
             started = true;
 

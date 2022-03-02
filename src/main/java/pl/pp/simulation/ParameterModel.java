@@ -33,4 +33,8 @@ public class ParameterModel {
         return panel;
     }
 
+    public int getValue(){
+        return Integer.parseInt(textField.getText());
+    }
+
 }
