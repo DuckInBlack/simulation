@@ -12,6 +12,7 @@ import static javax.swing.WindowConstants.*;
 
 public class SimulationChart extends JFrame {
     private XYSeries hareSeries;
+    private XYSeries grassSeries;
 
     public SimulationChart() {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -37,11 +38,18 @@ public class SimulationChart extends JFrame {
     private XYSeriesCollection getDataSet() {
         XYSeriesCollection dataset = new XYSeriesCollection();
         hareSeries = new XYSeries("zające");
+        grassSeries = new XYSeries("trawa");
 
         dataset.addSeries(hareSeries);
+        dataset.addSeries(grassSeries);
         return dataset;
     }
-    public void addPoint(double x, double y){
-        hareSeries.add(x,y);
+
+    public XYSeries getHareSeries() {
+        return hareSeries;
+    }
+
+    public XYSeries getGrassSeries() {
+        return grassSeries;
     }
 }

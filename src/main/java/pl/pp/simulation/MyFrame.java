@@ -36,7 +36,8 @@ public class MyFrame extends JFrame {
         textArea = new JTextArea();
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new Dimension(ProgramData.frameWidth, ProgramData.frameHeight - ProgramData.maxHeight - 50));
+        scrollPane.setPreferredSize(new Dimension(ProgramData.frameWidth,
+                ProgramData.frameHeight - ProgramData.maxHeight - 50));
         return scrollPane;
     }
 
@@ -44,7 +45,8 @@ public class MyFrame extends JFrame {
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridLayout(8, 1, 50, 50));
 
-        controlPanel.setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50, ProgramData.frameHeight));
+        controlPanel.setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50,
+                ProgramData.frameHeight));
 
         timeLabel = new JLabel("Czas: 0.");
         grassParameter = new ParameterModel("Trawa", 10);
@@ -77,6 +79,12 @@ public class MyFrame extends JFrame {
         resetButton.addActionListener(e -> {
             running = false;
             started = false;
+
+            textArea.setText("");
+
+            simulationChart.getGrassSeries().clear();
+            simulationChart.getHareSeries().clear();
+
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
             timer.stop();

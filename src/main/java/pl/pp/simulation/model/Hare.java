@@ -11,23 +11,25 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import static pl.pp.simulation.utils.ProgramData.*;
+import static pl.pp.simulation.utils.Components.*;
 import static pl.pp.simulation.utils.Utils.*;
 
-public class Hare {
+public class Hare extends Organism{
     public static int size = 10;
     public static int maxSpeed = 10;
     public static int visibility = 40;
     public static int minimumDesireForParenthood = 50;
+    public static int minimumHunger = 50;
+    public static int deathlyHunger = 200;
+    public static int reducingHunger = 100;
     public static int maxX = ProgramData.maxWidth - size;
     public static int maxY = ProgramData.maxHeight - size;
     private static Random random = new Random();
 
-    private double x;
-    private double y;
-
     private double speed;
     private double speedAngle;
     private int desireForParenthood;
+    private int hunger;
 
     public Hare() {
         x = random.nextInt(maxX);
@@ -35,6 +37,7 @@ public class Hare {
         speed = random.nextInt(maxSpeed);
         speedAngle = random.nextInt(360);
         desireForParenthood = minimumDesireForParenthood;
+        hunger = minimumHunger;
     }
 
     public Hare(double x, double y) {
@@ -43,6 +46,7 @@ public class Hare {
         speed = 0;
         speedAngle = random.nextInt(360);
         desireForParenthood = 0;
+        hunger = 0;
     }
 
     public void draw(Graphics2D graphics2D) {
@@ -60,6 +64,10 @@ public class Hare {
         validatePosition();
 
         desireForParenthood++;
+        hunger++;
+        if (hunger > deathlyHunger) {
+            deathHareList.add(this);
+        }
     }
 
     private void validatePosition() {
@@ -86,11 +94,40 @@ public class Hare {
     }
 
     private void changeSpeed() {
-        if (desireForParenthood >= minimumDesireForParenthood && getVisibleHares().size() > 0) {
+        if (hunger >= minimumHunger && getVisibleGrass().size() > 0) {
+            adjustSpeedToNearestGrass();
+        } else if (desireForParenthood >= minimumDesireForParenthood && getVisibleHares().size() > 0
+                && hunger < minimumHunger * 2) {
             adjustSpeedToNearestHare();
         } else {
             randomChangeSpeed();
         }
+    }
+
+    private void adjustSpeedToNearestGrass() {
+        Grass nearestGrass = Collections.min(getVisibleGrass(),
+                Comparator.comparingDouble((Grass hare) -> getDistance(this, hare)));
+        double distance = getDistance(nearestGrass, this);
+
+        if (distance < size) {
+            eatGrass(nearestGrass);
+        }
+
+        speed++;
+        speedAngle = getAngleTo(nearestGrass);
+
+        if (speed > maxSpeed) {
+            speed = maxSpeed;
+        }
+        if (speed > distance) {
+            speed = distance;
+        }
+    }
+
+    private void eatGrass(Grass nearestGrass) {
+        grassList.remove(nearestGrass);
+        textArea.append("\n Zjedzenie trawy");
+        hunger -= reducingHunger;
     }
 
     private void adjustSpeedToNearestHare() {
@@ -134,13 +171,19 @@ public class Hare {
                 .collect(Collectors.toList());
     }
 
+    public List<Grass> getVisibleGrass() {
+        return grassList.stream()
+                .filter(grass -> getDistance(this, grass) <= visibility)
+                .collect(Collectors.toList());
+    }
+
     public void clearDesireForParenthood() {
         desireForParenthood = 0;
     }
 
-    public double getAngleTo(Hare hare) {
-        double deltaX = hare.getX() - x;
-        double deltaY = hare.getY() - y;
+    public double getAngleTo(Organism organism) {
+        double deltaX = organism.getX() - x;
+        double deltaY = organism.getY() - y;
 
         return Math.toDegrees(Math.atan2(deltaY, deltaX));
     }

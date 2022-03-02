@@ -6,10 +6,8 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
-public class Grass {
+public class Grass extends Organism{
     public static int size = 8;
-    private double x;
-    private double y;
 
     public Grass() {
         Random random = new Random();
@@ -18,9 +16,9 @@ public class Grass {
     }
 
     public void draw(Graphics2D graphics2D) {
-        Ellipse2D.Double hareEllipse = new Ellipse2D.Double(x, y, size, size);
+        Ellipse2D.Double grassEllipse = new Ellipse2D.Double(x, y, size, size);
         graphics2D.setPaint(new Color(25, 128, 9));
-        graphics2D.fill(hareEllipse);
+        graphics2D.fill(grassEllipse);
     }
 
 
