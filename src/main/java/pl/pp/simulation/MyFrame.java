@@ -1,11 +1,16 @@
 package pl.pp.simulation;
 
 
+import pl.pp.simulation.model.Grass;
+import pl.pp.simulation.model.Hare;
+import pl.pp.simulation.utils.ParameterModel;
+import pl.pp.simulation.utils.ProgramData;
+
 import javax.swing.*;
 import java.awt.*;
 
-import static pl.pp.simulation.Components.*;
-import static pl.pp.simulation.ProgramData.*;
+import static pl.pp.simulation.utils.Components.*;
+import static pl.pp.simulation.utils.ProgramData.*;
 
 public class MyFrame extends JFrame {
 
@@ -45,11 +50,16 @@ public class MyFrame extends JFrame {
         grassParameter = new ParameterModel("Trawa", 10);
         hareParameter = new ParameterModel("Zające", 5);
         foxParameter = new ParameterModel("Lisy", 2);
-        initStartButton();
 
+        initStartButton();
         initStopButton();
         initResetButton();
+
         JButton chartButton = new JButton("Wykres");
+
+        chartButton.addActionListener(e -> {
+            simulationChart.setVisible(true);
+        });
 
         controlPanel.add(timeLabel);
         controlPanel.add(grassParameter.getPanel());

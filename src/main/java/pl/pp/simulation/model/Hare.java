@@ -1,4 +1,6 @@
-package pl.pp.simulation;
+package pl.pp.simulation.model;
+
+import pl.pp.simulation.utils.ProgramData;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -8,8 +10,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static pl.pp.simulation.ProgramData.*;
-import static pl.pp.simulation.Utils.*;
+import static pl.pp.simulation.utils.ProgramData.*;
+import static pl.pp.simulation.utils.Utils.*;
 
 public class Hare {
     public static int size = 10;

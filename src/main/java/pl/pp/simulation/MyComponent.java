@@ -1,9 +1,13 @@
 package pl.pp.simulation;
 
+import pl.pp.simulation.model.Grass;
+import pl.pp.simulation.model.Hare;
+import pl.pp.simulation.utils.ProgramData;
+
 import javax.swing.*;
 import java.awt.*;
 
-import static pl.pp.simulation.ProgramData.*;
+import static pl.pp.simulation.utils.ProgramData.*;
 
 public class MyComponent extends JComponent {
     public MyComponent() {
