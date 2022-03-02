@@ -1,6 +1,7 @@
 package pl.pp.simulation;
 
 
+import pl.pp.simulation.model.Fox;
 import pl.pp.simulation.model.Grass;
 import pl.pp.simulation.model.Hare;
 import pl.pp.simulation.utils.ParameterModel;
@@ -13,7 +14,6 @@ import static pl.pp.simulation.utils.Components.*;
 import static pl.pp.simulation.utils.ProgramData.*;
 
 public class MyFrame extends JFrame {
-
 
     public MyFrame() {
         setTitle("Sumulacja drapieżnik - ofiara");
@@ -49,9 +49,9 @@ public class MyFrame extends JFrame {
                 ProgramData.frameHeight));
 
         timeLabel = new JLabel("Czas: 0.");
-        grassParameter = new ParameterModel("Trawa", 10);
-        hareParameter = new ParameterModel("Zające", 5);
-        foxParameter = new ParameterModel("Lisy", 2);
+        grassParameter = new ParameterModel("Trawa", 50);
+        hareParameter = new ParameterModel("Zające", 20);
+        foxParameter = new ParameterModel("Lisy", 12);
 
         initStartButton();
         initStopButton();
@@ -84,12 +84,15 @@ public class MyFrame extends JFrame {
 
             simulationChart.getGrassSeries().clear();
             simulationChart.getHareSeries().clear();
+            simulationChart.getFoxSeries().clear();
 
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
             timer.stop();
+
             hareList.clear();
             grassList.clear();
+            foxList.clear();
 
             steps = 0;
             timeLabel.setText("Czas: 0");
@@ -97,8 +100,6 @@ public class MyFrame extends JFrame {
             grassParameter.setEditable(true);
             hareParameter.setEditable(true);
             foxParameter.setEditable(true);
-
-
         });
     }
 
@@ -121,6 +122,11 @@ public class MyFrame extends JFrame {
             if (!started) {
                 for (int i = 0; i < hareParameter.getValue(); i++) {
                     hareList.add(new Hare());
+                }
+            }
+            if (!started) {
+                for (int i = 0; i < foxParameter.getValue(); i++) {
+                    foxList.add(new Fox());
                 }
             }
             if (!started) {

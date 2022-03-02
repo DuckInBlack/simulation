@@ -1,5 +1,6 @@
 package pl.pp.simulation;
 
+import pl.pp.simulation.model.Fox;
 import pl.pp.simulation.model.Grass;
 import pl.pp.simulation.model.Hare;
 
@@ -27,6 +28,14 @@ public class Step  extends Timer {
             hareList.addAll(newHareList);
             hareList.removeAll(deathHareList);
 
+            newFoxList.clear();
+            deathFoxList.clear();
+            for (Fox fox : foxList) {
+                fox.move();
+            }
+            foxList.addAll(newFoxList);
+            foxList.removeAll(deathFoxList);
+
             int hareAmount = hareList.size();
             hareParameter.setValue(hareAmount);
             simulationChart.getHareSeries().add(steps, hareAmount);
@@ -35,10 +44,10 @@ public class Step  extends Timer {
             grassParameter.setValue(grassAmount);
             simulationChart.getGrassSeries().add(steps, grassAmount);
 
+            int foxAmount = foxList.size();
+            foxParameter.setValue(foxAmount);
+            simulationChart.getFoxSeries().add(steps, foxAmount);
             myComponent.repaint();
         });
     }
 }
-
-
-

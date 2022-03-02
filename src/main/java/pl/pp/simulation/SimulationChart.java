@@ -8,11 +8,10 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 
-import static javax.swing.WindowConstants.*;
-
 public class SimulationChart extends JFrame {
     private XYSeries hareSeries;
     private XYSeries grassSeries;
+    private XYSeries foxSeries;
 
     public SimulationChart() {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -39,14 +38,20 @@ public class SimulationChart extends JFrame {
         XYSeriesCollection dataset = new XYSeriesCollection();
         hareSeries = new XYSeries("zające");
         grassSeries = new XYSeries("trawa");
+        foxSeries = new XYSeries("lisy");
 
         dataset.addSeries(hareSeries);
         dataset.addSeries(grassSeries);
+        dataset.addSeries(foxSeries);
         return dataset;
     }
 
     public XYSeries getHareSeries() {
         return hareSeries;
+    }
+
+    public XYSeries getFoxSeries() {
+        return foxSeries;
     }
 
     public XYSeries getGrassSeries() {

@@ -1,6 +1,8 @@
 package pl.pp.simulation.model;
 
-public class Organism {
+import java.awt.*;
+
+public abstract class Organism {
     protected double x;
     protected double y;
 
@@ -19,4 +21,5 @@ public class Organism {
         return y;
     }
 
+    public abstract void draw(Graphics2D graphics2D);
 }
