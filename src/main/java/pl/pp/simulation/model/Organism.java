@@ -4,6 +4,7 @@ import java.awt.*;
 
 public abstract class Organism {
 
+
     protected double x;
     protected double y;
 

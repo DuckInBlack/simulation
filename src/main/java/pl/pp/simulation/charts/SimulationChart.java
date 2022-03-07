@@ -59,4 +59,11 @@ public class SimulationChart extends JFrame {
     public XYSeries getGrassSeries() {
         return grassSeries;
     }
+
+    public void clear() {
+        grassSeries.clear();
+        hareSeries.clear();
+        foxSeries.clear();
+    }
+
 }

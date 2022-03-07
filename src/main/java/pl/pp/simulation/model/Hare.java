@@ -5,9 +5,9 @@ import java.awt.geom.Ellipse2D;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static pl.pp.simulation.model.GrassUtils.grassList;
+import static pl.pp.simulation.model.Hares.deathHareList;
 import static pl.pp.simulation.ui.panels.ScrollPanel.textArea;
-import static pl.pp.simulation.utils.ProgramData.deathHareList;
-import static pl.pp.simulation.utils.ProgramData.grassList;
 import static pl.pp.simulation.utils.Utils.getDistance;
 import static pl.pp.simulation.utils.Utils.multipleHares;
 
@@ -92,5 +92,3 @@ public class Hare extends Animal {
         return y;
     }
 }
-
-

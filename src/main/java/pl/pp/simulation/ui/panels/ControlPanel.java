@@ -14,6 +14,7 @@ import static pl.pp.simulation.charts.SimulationChart.simulationChart;
 
 public class ControlPanel extends JPanel {
 
+
     public static ParameterModel grassParameter;
     public static ParameterModel hareParameter;
     public static ParameterModel foxParameter;
@@ -40,9 +41,7 @@ public class ControlPanel extends JPanel {
 
         JButton chartButton = new JButton("Wykres");
 
-        chartButton.addActionListener(e -> {
-            simulationChart.setVisible(true);
-        });
+        chartButton.addActionListener(e -> simulationChart.setVisible(true));
 
         add(ControlPanel.timeLabel);
         add(ControlPanel.grassParameter.getPanel());
@@ -53,6 +52,18 @@ public class ControlPanel extends JPanel {
         add(ResetButton.getInstance());
         add(chartButton);
 
+    }
+
+    public static void setEditableParameters() {
+        grassParameter.setEditable(true);
+        hareParameter.setEditable(true);
+        foxParameter.setEditable(true);
+    }
+
+    public static void setNotEditableParameters() {
+        grassParameter.setEditable(false);
+        hareParameter.setEditable(false);
+        foxParameter.setEditable(false);
     }
 
 }

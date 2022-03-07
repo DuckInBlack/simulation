@@ -1,22 +1,19 @@
 package pl.pp.simulation.ui.buttons;
 
 
-import pl.pp.simulation.model.Fox;
-import pl.pp.simulation.model.Grass;
-import pl.pp.simulation.model.Hare;
+import pl.pp.simulation.model.Organisms;
 import pl.pp.simulation.ui.panels.ControlPanel;
 
 import javax.swing.*;
 
 import static pl.pp.simulation.utils.ProgramData.*;
-import static pl.pp.simulation.utils.ProgramData.running;
 
 public class StartButton extends JButton {
 
-    private static final StartButton startButton = new StartButton("Start");
+    private static final StartButton START_BUTTON = new StartButton("Start");
 
     public static StartButton getInstance() {
-        return startButton;
+        return START_BUTTON;
     }
 
     private StartButton(String text) {
@@ -24,19 +21,7 @@ public class StartButton extends JButton {
 
         addActionListener(e -> {
             if (!started) {
-                for (int i = 0; i < ControlPanel.hareParameter.getValue(); i++) {
-                    hareList.add(new Hare());
-                }
-            }
-            if (!started) {
-                for (int i = 0; i < ControlPanel.foxParameter.getValue(); i++) {
-                    foxList.add(new Fox());
-                }
-            }
-            if (!started) {
-                for (int i = 0; i < ControlPanel.grassParameter.getValue(); i++) {
-                    grassList.add(new Grass());
-                }
+                Organisms.init();
             }
 
             running = true;
@@ -54,3 +39,4 @@ public class StartButton extends JButton {
         });
     }
 }
+

@@ -1,14 +1,13 @@
 package pl.pp.simulation.model;
-import static pl.pp.simulation.ui.panels.ScrollPanel.textArea;
-
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.Collections;
 import java.util.Comparator;
 
-import static pl.pp.simulation.utils.ProgramData.deathFoxList;
-import static pl.pp.simulation.utils.ProgramData.hareList;
+import static pl.pp.simulation.model.Foxes.deathFoxList;
+import static pl.pp.simulation.model.Hares.hareList;
+import static pl.pp.simulation.ui.panels.ScrollPanel.textArea;
 import static pl.pp.simulation.utils.Utils.getDistance;
 import static pl.pp.simulation.utils.Utils.multipleFoxes;
 

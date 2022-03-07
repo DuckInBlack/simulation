@@ -1,5 +1,6 @@
 package pl.pp.simulation.ui.buttons;
 
+import pl.pp.simulation.model.Organisms;
 import pl.pp.simulation.ui.panels.ControlPanel;
 
 import javax.swing.*;
@@ -9,10 +10,10 @@ import static pl.pp.simulation.ui.panels.ScrollPanel.textArea;
 import static pl.pp.simulation.utils.ProgramData.*;
 
 public class ResetButton extends JButton {
-    private static final ResetButton resetButton = new ResetButton("Reset");
+    private static final ResetButton RESET_BUTTON = new ResetButton("Reset");
 
     public static ResetButton getInstance() {
-        return resetButton;
+        return RESET_BUTTON;
     }
 
     private ResetButton(String text) {
@@ -24,27 +25,20 @@ public class ResetButton extends JButton {
 
             textArea.setText("");
 
-            simulationChart.getGrassSeries().clear();
-            simulationChart.getHareSeries().clear();
-            simulationChart.getFoxSeries().clear();
+            simulationChart.clear();
 
             StartButton.getInstance().setEnabled(true);
             StopButton.getInstance().setEnabled(false);
             timer.stop();
 
-            hareList.clear();
-            grassList.clear();
-            foxList.clear();
+            Organisms.clear();
+
+            ControlPanel.setEditableParameters();
 
             steps = 0;
             ControlPanel.timeLabel.setText("Czas: 0");
-
-            ControlPanel.grassParameter.setEditable(true);
-            ControlPanel.hareParameter.setEditable(true);
-            ControlPanel.foxParameter.setEditable(true);
 
         });
 
     }
 }
-

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static pl.pp.simulation.utils.ProgramData.*;
 import static pl.pp.simulation.utils.Utils.getDistance;
 
 
@@ -134,20 +133,20 @@ public abstract class Animal extends Organism {
     }
 
     public List<Fox> getVisibleFoxes() {
-        return foxList.stream()
+        return Foxes.foxList.stream()
                 .filter(fox -> fox != this && getDistance(this, fox) <= visibility)
                 .collect(Collectors.toList());
     }
 
 
     public List<Hare> getVisibleHares() {
-        return hareList.stream()
+        return Hares.hareList.stream()
                 .filter(hare -> hare != this && getDistance(this, hare) <= visibility)
                 .collect(Collectors.toList());
     }
 
     public List<Grass> getVisibleGrass() {
-        return grassList.stream()
+        return GrassUtils.grassList.stream()
                 .filter(grass -> getDistance(this, grass) <= visibility)
                 .collect(Collectors.toList());
     }
