@@ -1,20 +1,18 @@
 package pl.pp.simulation.model;
 
-import pl.pp.simulation.utils.ProgramData;
-
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
-import static pl.pp.simulation.utils.ProgramData.*;
-import static pl.pp.simulation.utils.Components.*;
-import static pl.pp.simulation.utils.Utils.*;
+import static pl.pp.simulation.ui.panels.ScrollPanel.textArea;
+import static pl.pp.simulation.utils.ProgramData.deathHareList;
+import static pl.pp.simulation.utils.ProgramData.grassList;
+import static pl.pp.simulation.utils.Utils.getDistance;
+import static pl.pp.simulation.utils.Utils.multipleHares;
 
-public class Hare extends Animal{
+public class Hare extends Animal {
+
     public Hare() {
         super();
     }
@@ -45,12 +43,11 @@ public class Hare extends Animal{
     }
 
     public void changeSpeed() {
-        if (getVisibleFoxes().size() > 0){
+        if (getVisibleFoxes().size() > 0) {
             Fox nearestFox = Collections.min(getVisibleFoxes(),
                     Comparator.comparingDouble((Fox fox) -> getDistance(this, fox)));
             runAwayFrom(nearestFox);
-        } else
-        if (hunger >= minimumHunger && getVisibleGrass().size() > 0) {
+        } else if (hunger >= minimumHunger && getVisibleGrass().size() > 0) {
             Grass nearestGrass = Collections.min(getVisibleGrass(),
                     Comparator.comparingDouble((Grass grass) -> getDistance(this, grass)));
             adjustSpeedTo(nearestGrass);
@@ -95,3 +92,5 @@ public class Hare extends Animal{
         return y;
     }
 }
+
+

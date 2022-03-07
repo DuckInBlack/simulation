@@ -3,20 +3,23 @@ package pl.pp.simulation;
 import pl.pp.simulation.model.Fox;
 import pl.pp.simulation.model.Grass;
 import pl.pp.simulation.model.Hare;
+import pl.pp.simulation.ui.SimulationComponent;
 
 import javax.swing.*;
 
-import static pl.pp.simulation.utils.Components.*;
+import static pl.pp.simulation.charts.SimulationChart.simulationChart;
+
+import static pl.pp.simulation.ui.panels.ControlPanel.*;
 import static pl.pp.simulation.utils.ProgramData.*;
 
-public class Step  extends Timer {
+public class Step extends Timer {
 
     public Step() {
         super(40, e -> {
             steps++;
             timeLabel.setText("Czas: " + steps);
 
-            if(steps % 5 ==0){
+            if (steps % 5 == 0) {
                 grassList.add(new Grass());
             }
 
@@ -47,7 +50,8 @@ public class Step  extends Timer {
             int foxAmount = foxList.size();
             foxParameter.setValue(foxAmount);
             simulationChart.getFoxSeries().add(steps, foxAmount);
-            myComponent.repaint();
+
+            SimulationComponent.getInstance().repaint();
         });
     }
 }

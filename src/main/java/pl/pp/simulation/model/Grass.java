@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
-public class Grass extends Organism{
+public class Grass extends Organism {
     public static int size = 8;
 
     public Grass() {

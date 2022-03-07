@@ -1,4 +1,4 @@
-package pl.pp.simulation;
+package pl.pp.simulation.ui;
 
 import pl.pp.simulation.model.Fox;
 import pl.pp.simulation.model.Grass;
@@ -10,8 +10,14 @@ import java.awt.*;
 
 import static pl.pp.simulation.utils.ProgramData.*;
 
-public class MyComponent extends JComponent {
-    public MyComponent() {
+public class SimulationComponent extends JComponent {
+    private static final SimulationComponent SIMULATION_COMPONENT = new SimulationComponent();
+
+    public static SimulationComponent getInstance() {
+        return SIMULATION_COMPONENT;
+    }
+
+    public SimulationComponent() {
     }
 
     @Override
@@ -19,18 +25,17 @@ public class MyComponent extends JComponent {
         Toolkit.getDefaultToolkit().sync();
         Graphics2D graphics2D = (Graphics2D) g;
 
-        Rectangle limit = new Rectangle(0,0, ProgramData.maxWidth, ProgramData.maxHeight);
+        Rectangle limit = new Rectangle(0, 0, ProgramData.maxWidth, ProgramData.maxHeight);
         graphics2D.setPaint(Color.LIGHT_GRAY);
         graphics2D.fill(limit);
 
-        for(Hare hare : hareList){
+        for (Hare hare : hareList) {
             hare.draw(graphics2D);
         }
-        for(Grass grass : grassList){
+        for (Grass grass : grassList) {
             grass.draw(graphics2D);
         }
-
-        for(Fox fox : foxList){
+        for (Fox fox : foxList) {
             fox.draw(graphics2D);
         }
 

@@ -3,6 +3,7 @@ package pl.pp.simulation.model;
 import java.awt.*;
 
 public abstract class Organism {
+
     protected double x;
     protected double y;
 
@@ -13,6 +14,7 @@ public abstract class Organism {
         this.x = x;
         this.y = y;
     }
+
     public double getX() {
         return x;
     }

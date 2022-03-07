@@ -1,7 +1,6 @@
 package pl.pp.simulation.model;
 
 import pl.pp.simulation.utils.ProgramData;
-import pl.pp.simulation.utils.Utils;
 
 import java.util.List;
 import java.util.Random;
@@ -9,6 +8,7 @@ import java.util.stream.Collectors;
 
 import static pl.pp.simulation.utils.ProgramData.*;
 import static pl.pp.simulation.utils.Utils.getDistance;
+
 
 public abstract class Animal extends Organism {
     public static int size = 10;
@@ -110,7 +110,7 @@ public abstract class Animal extends Organism {
 
 
     protected void adjustSpeedTo(Organism organism) {
-        double distance = Utils.getDistance(organism, this);
+        double distance = getDistance(organism, this);
 
         speed++;
         speedAngle = getAngleTo(organism);
