@@ -21,13 +21,9 @@ public class ControlPanel extends JPanel {
 
     public static JLabel timeLabel;
 
-    private static final ControlPanel controlPanel = new ControlPanel();
+    public ControlPanel() {
 
-    public static ControlPanel getInstance() {
-        return controlPanel;
-    }
-
-    private ControlPanel() {
+        System.out.println("Konstruktor - ControlPanel");
 
         setLayout(new GridLayout(8, 1, 50, 50));
 

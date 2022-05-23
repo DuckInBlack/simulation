@@ -1,6 +1,8 @@
 package pl.pp.simulation.ui.buttons;
 
-import pl.pp.simulation.model.Organisms;
+import pl.pp.simulation.model.Foxes;
+import pl.pp.simulation.model.GrassUtils;
+import pl.pp.simulation.model.Hares;
 import pl.pp.simulation.ui.panels.ControlPanel;
 
 import javax.swing.*;
@@ -31,7 +33,7 @@ public class ResetButton extends JButton {
             StopButton.getInstance().setEnabled(false);
             timer.stop();
 
-            Organisms.clear();
+            clear();
 
             ControlPanel.setEditableParameters();
 
@@ -40,5 +42,11 @@ public class ResetButton extends JButton {
 
         });
 
+    }
+    public void clear() {
+
+        Hares.hareList.clear();
+        GrassUtils.grassList.clear();
+        Foxes.foxList.clear();
     }
 }

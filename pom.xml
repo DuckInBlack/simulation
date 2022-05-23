@@ -12,12 +12,24 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <jfreechart.version>1.5.3</jfreechart.version>
+        <spring-context.version>5.3.9</spring-context.version>
+        <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>
             <version>${jfreechart.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-context.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>${javax.annotation-api.version}</version>
         </dependency>
 
     </dependencies>
