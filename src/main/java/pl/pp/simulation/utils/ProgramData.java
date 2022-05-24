@@ -1,8 +1,12 @@
 package pl.pp.simulation.utils;
 
-import javax.swing.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import pl.pp.simulation.Step;
+import pl.pp.simulation.config.SimulationConfig;
 
 public class ProgramData {
+
     public static int frameWidth = 1400;
     public static int frameHeight = 1050;
 
@@ -11,8 +15,7 @@ public class ProgramData {
 
     public static boolean started = false;
     public static boolean running = false;
-
-    public static Timer timer;
+    public static ApplicationContext context = new AnnotationConfigApplicationContext(SimulationConfig.class);
     public static long steps = 0;
 
 

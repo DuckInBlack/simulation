@@ -15,13 +15,13 @@ import static pl.pp.simulation.charts.SimulationChart.simulationChart;
 public class ControlPanel extends JPanel {
 
 
-    public static ParameterModel grassParameter;
-    public static ParameterModel hareParameter;
-    public static ParameterModel foxParameter;
+    public static ParameterModel grassParameter = new ParameterModel("Trawa", 50);
+    public static ParameterModel hareParameter = new ParameterModel("Zające", 20);
+    public static ParameterModel foxParameter = new ParameterModel("Lisy", 12);
 
     public static JLabel timeLabel;
 
-    public ControlPanel() {
+    public ControlPanel(ResetButton resetButton, StartButton startButton, StopButton stopButton) {
 
         System.out.println("Konstruktor - ControlPanel");
 
@@ -30,10 +30,7 @@ public class ControlPanel extends JPanel {
         setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50,
                 ProgramData.frameHeight));
 
-        ControlPanel.timeLabel = new JLabel("Czas: 0.");
-        ControlPanel.grassParameter = new ParameterModel("Trawa", 50);
-        ControlPanel.hareParameter = new ParameterModel("Zające", 20);
-        ControlPanel.foxParameter = new ParameterModel("Lisy", 12);
+        timeLabel = new JLabel("Czas: 0.");
 
         JButton chartButton = new JButton("Wykres");
 
@@ -43,9 +40,9 @@ public class ControlPanel extends JPanel {
         add(ControlPanel.grassParameter.getPanel());
         add(ControlPanel.hareParameter.getPanel());
         add(ControlPanel.foxParameter.getPanel());
-        add(StartButton.getInstance());
-        add(StopButton.getInstance());
-        add(ResetButton.getInstance());
+        add(startButton);
+        add(stopButton);
+        add(resetButton);
         add(chartButton);
 
     }

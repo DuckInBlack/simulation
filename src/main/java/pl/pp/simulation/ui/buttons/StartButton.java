@@ -1,6 +1,7 @@
 package pl.pp.simulation.ui.buttons;
 
 
+import pl.pp.simulation.Step;
 import pl.pp.simulation.model.*;
 import pl.pp.simulation.ui.panels.ControlPanel;
 import pl.pp.simulation.utils.ParameterModel;
@@ -14,14 +15,9 @@ public class StartButton extends JButton {
     public ParameterModel hareParameter = ControlPanel.hareParameter;
     public ParameterModel foxParameter = ControlPanel.foxParameter;
 
-    private static final StartButton START_BUTTON = new StartButton("Start");
-
-    public static StartButton getInstance() {
-        return START_BUTTON;
-    }
-
-    private StartButton(String text) {
+    public StartButton(StopButton stopButton, Step timer, String text) {
         super(text);
+        System.out.println("Konstruktor - StartButton");
 
         addActionListener(e -> {
             if (!started) {
@@ -32,7 +28,7 @@ public class StartButton extends JButton {
             started = true;
 
             setEnabled(false);
-            StopButton.getInstance().setEnabled(true);
+            stopButton.setEnabled(true);
 
             ControlPanel.grassParameter.setEditable(false);
             ControlPanel.hareParameter.setEditable(false);
