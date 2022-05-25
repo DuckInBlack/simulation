@@ -2,28 +2,39 @@ package pl.pp.simulation.ui.buttons;
 
 import pl.pp.simulation.Step;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 
-import static pl.pp.simulation.utils.ProgramData.context;
 import static pl.pp.simulation.utils.ProgramData.running;
 
 public class StopButton extends JButton {
-    //TODO fix this
-    //public StopButton(StartButton startButton, String text) {
-    public StopButton(Step timer, String text) {
+
+    private Step timer;
+    private StartButton startButton;
+
+    public StopButton(String text) {
         super(text);
         System.out.println("Konstruktor - StopButton");
 
+    }
+
+    @PostConstruct
+    private void init() {
         setEnabled(false);
         addActionListener(e -> {
-
             running = false;
             setEnabled(false);
-            //TODO fix this
-           // startButton.setEnabled(true);
-
+            startButton.setEnabled(true);
             timer.stop();
-
         });
     }
+
+    public void setTimer(Step timer) {
+        this.timer = timer;
+    }
+
+    public void setStartButton(StartButton startButton) {
+        this.startButton = startButton;
+    }
 }
+

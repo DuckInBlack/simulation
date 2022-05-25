@@ -7,6 +7,7 @@ import pl.pp.simulation.ui.buttons.StopButton;
 import pl.pp.simulation.utils.ParameterModel;
 import pl.pp.simulation.utils.ProgramData;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,10 +22,28 @@ public class ControlPanel extends JPanel {
 
     public static JLabel timeLabel;
 
-    public ControlPanel(ResetButton resetButton, StartButton startButton, StopButton stopButton) {
+    private ResetButton resetButton;
+    private StartButton startButton;
+    private StopButton stopButton;
 
+    public ControlPanel() {
         System.out.println("Konstruktor - ControlPanel");
+    }
 
+    public static void setEditableParameters() {
+        grassParameter.setEditable(true);
+        hareParameter.setEditable(true);
+        foxParameter.setEditable(true);
+    }
+
+    public static void setNotEditableParameters() {
+        grassParameter.setEditable(false);
+        hareParameter.setEditable(false);
+        foxParameter.setEditable(false);
+    }
+
+    @PostConstruct
+    private void init() {
         setLayout(new GridLayout(8, 1, 50, 50));
 
         setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50,
@@ -44,19 +63,17 @@ public class ControlPanel extends JPanel {
         add(stopButton);
         add(resetButton);
         add(chartButton);
-
     }
 
-    public static void setEditableParameters() {
-        grassParameter.setEditable(true);
-        hareParameter.setEditable(true);
-        foxParameter.setEditable(true);
+    public void setResetButton(ResetButton resetButton) {
+        this.resetButton = resetButton;
     }
 
-    public static void setNotEditableParameters() {
-        grassParameter.setEditable(false);
-        hareParameter.setEditable(false);
-        foxParameter.setEditable(false);
+    public void setStartButton(StartButton startButton) {
+        this.startButton = startButton;
     }
 
+    public void setStopButton(StopButton stopButton) {
+        this.stopButton = stopButton;
+    }
 }
