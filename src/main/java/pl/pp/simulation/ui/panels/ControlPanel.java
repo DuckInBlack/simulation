@@ -14,13 +14,12 @@ import java.awt.*;
 import static pl.pp.simulation.charts.SimulationChart.simulationChart;
 
 public class ControlPanel extends JPanel {
-
-
+    
     public static ParameterModel grassParameter = new ParameterModel("Trawa", 50);
     public static ParameterModel hareParameter = new ParameterModel("Zające", 20);
     public static ParameterModel foxParameter = new ParameterModel("Lisy", 12);
 
-    public static JLabel timeLabel;
+    private JLabel timeLabel;
 
     private ResetButton resetButton;
     private StartButton startButton;
@@ -49,16 +48,14 @@ public class ControlPanel extends JPanel {
         setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50,
                 ProgramData.frameHeight));
 
-        timeLabel = new JLabel("Czas: 0.");
-
         JButton chartButton = new JButton("Wykres");
 
         chartButton.addActionListener(e -> simulationChart.setVisible(true));
 
-        add(ControlPanel.timeLabel);
-        add(ControlPanel.grassParameter.getPanel());
-        add(ControlPanel.hareParameter.getPanel());
-        add(ControlPanel.foxParameter.getPanel());
+        add(timeLabel);
+        add(grassParameter.getPanel());
+        add(hareParameter.getPanel());
+        add(foxParameter.getPanel());
         add(startButton);
         add(stopButton);
         add(resetButton);
@@ -75,5 +72,9 @@ public class ControlPanel extends JPanel {
 
     public void setStopButton(StopButton stopButton) {
         this.stopButton = stopButton;
+    }
+
+    public void setTimeLabel(JLabel timeLabel) {
+        this.timeLabel = timeLabel;
     }
 }

@@ -18,6 +18,9 @@ public class StartButton extends JButton {
 
     private StopButton stopButton;
     private Step timer;
+    private GrassService grassService;
+    private FoxesService foxesService;
+    private HaresService haresService;
 
     public StartButton(String text) {
         super(text);
@@ -49,13 +52,13 @@ public class StartButton extends JButton {
 
     public void createObjects() {
         for (int i = 0; i < hareParameter.getValue(); i++) {
-            Hares.hareList.add(new Hare());
+            haresService.getHareList().add(new Hare());
         }
         for (int i = 0; i < foxParameter.getValue(); i++) {
-            Foxes.foxList.add(new Fox());
+            foxesService.getFoxList().add(new Fox());
         }
         for (int i = 0; i < grassParameter.getValue(); i++) {
-            GrassUtils.grassList.add(new Grass());
+            grassService.getGrassList().add(new Grass());
         }
     }
 
@@ -65,6 +68,18 @@ public class StartButton extends JButton {
 
     public void setTimer(Step timer) {
         this.timer = timer;
+    }
+
+    public void setGrassService(GrassService grassService) {
+        this.grassService = grassService;
+    }
+
+    public void setFoxesService(FoxesService foxesService) {
+        this.foxesService = foxesService;
+    }
+
+    public void setHaresService(HaresService haresService) {
+        this.haresService = haresService;
     }
 }
 

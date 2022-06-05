@@ -3,6 +3,9 @@ package pl.pp.simulation.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.pp.simulation.Step;
+import pl.pp.simulation.model.FoxesService;
+import pl.pp.simulation.model.GrassService;
+import pl.pp.simulation.model.HaresService;
 import pl.pp.simulation.ui.MyFrame;
 import pl.pp.simulation.ui.SimulationComponent;
 import pl.pp.simulation.ui.buttons.ResetButton;
@@ -10,6 +13,8 @@ import pl.pp.simulation.ui.buttons.StartButton;
 import pl.pp.simulation.ui.buttons.StopButton;
 import pl.pp.simulation.ui.panels.ControlPanel;
 import pl.pp.simulation.ui.panels.ScrollPanel;
+
+import javax.swing.*;
 
 @Configuration
 public class SimulationConfig {
@@ -26,6 +31,9 @@ public class SimulationConfig {
         StartButton startButton = new StartButton("Start");
         startButton.setStopButton(stopButton());
         startButton.setTimer(timer());
+        startButton.setGrassService(grassService());
+        startButton.setFoxesService(foxesService());
+        startButton.setHaresService(haresService());
         return startButton;
     }
 
@@ -34,13 +42,38 @@ public class SimulationConfig {
         ResetButton resetButton = new ResetButton("Reset");
         resetButton.setStartButton(startButton());
         resetButton.setStopButton(stopButton());
+        resetButton.setGrassService(grassService());
+        resetButton.setFoxesService(foxesService());
+        resetButton.setHaresService(haresService());
         resetButton.setTimer(timer());
+        resetButton.setTimeLabel(timeLabel());
         return resetButton;
     }
 
     @Bean
     public Step timer() {
-        return new Step(simulationComponent());
+        Step step = new Step();
+        step.setSimulationComponent(simulationComponent());
+        step.setGrassService(grassService());
+        step.setFoxesService(foxesService());
+        step.setHaresService(haresService());
+        step.setTimeLabel(timeLabel());
+        return step;
+    }
+
+    @Bean
+    public GrassService grassService(){
+        return new GrassService();
+    }
+
+    @Bean
+    public FoxesService foxesService(){
+        return new FoxesService();
+    }
+
+    @Bean
+    public HaresService haresService(){
+        return new HaresService();
     }
 
     @Bean
@@ -49,6 +82,7 @@ public class SimulationConfig {
         controlPanel.setResetButton(resetButton());
         controlPanel.setStartButton(startButton());
         controlPanel.setStopButton(stopButton());
+        controlPanel.setTimeLabel(timeLabel());
         return controlPanel;
     }
 
@@ -58,8 +92,17 @@ public class SimulationConfig {
     }
 
     @Bean
+    public JLabel timeLabel(){
+        return new JLabel();
+    }
+
+    @Bean
     public SimulationComponent simulationComponent(){
-        return new SimulationComponent();
+        SimulationComponent simulationComponent = new SimulationComponent();
+        simulationComponent.setGrassService(grassService());
+        simulationComponent.setFoxesService(foxesService());
+        simulationComponent.setHaresService(haresService());
+        return simulationComponent;
     }
 
     @Bean

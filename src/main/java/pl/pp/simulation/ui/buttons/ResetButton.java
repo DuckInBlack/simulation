@@ -1,9 +1,9 @@
 package pl.pp.simulation.ui.buttons;
 
 import pl.pp.simulation.Step;
-import pl.pp.simulation.model.Foxes;
-import pl.pp.simulation.model.GrassUtils;
-import pl.pp.simulation.model.Hares;
+import pl.pp.simulation.model.FoxesService;
+import pl.pp.simulation.model.GrassService;
+import pl.pp.simulation.model.HaresService;
 import pl.pp.simulation.ui.panels.ControlPanel;
 
 import javax.annotation.PostConstruct;
@@ -18,22 +18,25 @@ public class ResetButton extends JButton {
     private StartButton startButton;
     private StopButton stopButton;
     private Step timer;
+    private GrassService grassService;
+    private FoxesService foxesService;
+    private HaresService haresService;
+
+    private JLabel timeLabel;
 
     public ResetButton(String text) {
         super(text);
         System.out.println("Konstruktor - ResetButton");
-
     }
 
     public void clear() {
-
-        Hares.hareList.clear();
-        GrassUtils.grassList.clear();
-        Foxes.foxList.clear();
+        haresService.getHareList().clear();
+        grassService.getGrassList().clear();
+        foxesService.getFoxList().clear();
     }
 
     @PostConstruct
-    private void init(){
+    private void init() {
         addActionListener(e -> {
             running = false;
             started = false;
@@ -52,7 +55,7 @@ public class ResetButton extends JButton {
             ControlPanel.setEditableParameters();
 
             steps = 0;
-            ControlPanel.timeLabel.setText("Czas: 0");
+            timeLabel.setText("Czas: 0");
 
         });
     }
@@ -67,5 +70,21 @@ public class ResetButton extends JButton {
 
     public void setTimer(Step timer) {
         this.timer = timer;
+    }
+
+    public void setGrassService(GrassService grassService) {
+        this.grassService = grassService;
+    }
+
+    public void setFoxesService(FoxesService foxesService) {
+        this.foxesService = foxesService;
+    }
+
+    public void setHaresService(HaresService haresService) {
+        this.haresService = haresService;
+    }
+
+    public void setTimeLabel(JLabel timeLabel) {
+        this.timeLabel = timeLabel;
     }
 }

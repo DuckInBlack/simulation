@@ -16,6 +16,5 @@ public class ScrollPanel extends JScrollPane {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(ProgramData.frameWidth,
                 ProgramData.frameHeight - ProgramData.maxHeight - 50));
-
     }
 }
