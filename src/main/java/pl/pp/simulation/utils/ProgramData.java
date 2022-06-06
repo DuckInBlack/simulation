@@ -2,7 +2,6 @@ package pl.pp.simulation.utils;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import pl.pp.simulation.Step;
 import pl.pp.simulation.config.SimulationConfig;
 
 public class ProgramData {

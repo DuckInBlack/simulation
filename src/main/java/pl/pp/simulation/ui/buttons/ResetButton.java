@@ -1,15 +1,15 @@
 package pl.pp.simulation.ui.buttons;
 
 import pl.pp.simulation.Step;
+import pl.pp.simulation.charts.SimulationChart;
 import pl.pp.simulation.model.FoxesService;
 import pl.pp.simulation.model.GrassService;
 import pl.pp.simulation.model.HaresService;
-import pl.pp.simulation.ui.panels.ControlPanel;
+import pl.pp.simulation.utils.ParameterModel;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
 
-import static pl.pp.simulation.charts.SimulationChart.simulationChart;
 import static pl.pp.simulation.ui.panels.ScrollPanel.textArea;
 import static pl.pp.simulation.utils.ProgramData.*;
 
@@ -21,6 +21,11 @@ public class ResetButton extends JButton {
     private GrassService grassService;
     private FoxesService foxesService;
     private HaresService haresService;
+    private SimulationChart simulationChart;
+
+    private ParameterModel grassParameter;
+    private ParameterModel hareParameter;
+    private ParameterModel foxParameter;
 
     private JLabel timeLabel;
 
@@ -52,7 +57,7 @@ public class ResetButton extends JButton {
 
             clear();
 
-            ControlPanel.setEditableParameters();
+            setEditableParameters();
 
             steps = 0;
             timeLabel.setText("Czas: 0");
@@ -86,5 +91,27 @@ public class ResetButton extends JButton {
 
     public void setTimeLabel(JLabel timeLabel) {
         this.timeLabel = timeLabel;
+    }
+
+    public void setGrassParameter(ParameterModel grassParameter) {
+        this.grassParameter = grassParameter;
+    }
+
+    public void setHareParameter(ParameterModel hareParameter) {
+        this.hareParameter = hareParameter;
+    }
+
+    public void setFoxParameter(ParameterModel foxParameter) {
+        this.foxParameter = foxParameter;
+    }
+
+    public void setSimulationChart(SimulationChart simulationChart) {
+        this.simulationChart = simulationChart;
+    }
+
+    public void setEditableParameters() {
+        grassParameter.setEditable(true);
+        hareParameter.setEditable(true);
+        foxParameter.setEditable(true);
     }
 }

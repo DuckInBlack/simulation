@@ -20,7 +20,7 @@ public class MyFrame extends JFrame {
     }
 
     @PostConstruct
-    private void init(){
+    private void init() {
         setTitle("Sumulacja drapieżnik - ofiara");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(ProgramData.frameWidth, ProgramData.frameHeight);

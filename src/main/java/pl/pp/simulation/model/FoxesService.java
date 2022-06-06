@@ -1,17 +1,21 @@
 package pl.pp.simulation.model;
 
+import pl.pp.simulation.charts.SimulationChart;
+import pl.pp.simulation.utils.ParameterModel;
+
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
-import static pl.pp.simulation.charts.SimulationChart.simulationChart;
-import static pl.pp.simulation.ui.panels.ControlPanel.foxParameter;
 import static pl.pp.simulation.utils.ProgramData.steps;
 
 public class FoxesService {
     private final List<Fox> foxList = new LinkedList<>();
     private final List<Fox> newFoxList = new LinkedList<>();
     private final List<Fox> deathFoxList = new LinkedList<>();
+
+    private SimulationChart simulationChart;
+    private ParameterModel foxParameter;
 
     public void move() {
         getNewFoxList().clear();
@@ -34,6 +38,7 @@ public class FoxesService {
             fox.draw(graphics2D);
         }
     }
+
     public List<Fox> getFoxList() {
         return foxList;
     }
@@ -45,5 +50,15 @@ public class FoxesService {
     public List<Fox> getDeathFoxList() {
         return deathFoxList;
     }
+
+    public void setSimulationChart(SimulationChart simulationChart) {
+        this.simulationChart = simulationChart;
+    }
+
+    public void setFoxParameter(ParameterModel foxParameter) {
+        this.foxParameter = foxParameter;
+    }
+
+
 }
 

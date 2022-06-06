@@ -1,6 +1,7 @@
 package pl.pp.simulation.ui.panels;
 
 
+import pl.pp.simulation.charts.SimulationChart;
 import pl.pp.simulation.ui.buttons.ResetButton;
 import pl.pp.simulation.ui.buttons.StartButton;
 import pl.pp.simulation.ui.buttons.StopButton;
@@ -11,13 +12,10 @@ import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 
-import static pl.pp.simulation.charts.SimulationChart.simulationChart;
-
 public class ControlPanel extends JPanel {
-    
-    public static ParameterModel grassParameter = new ParameterModel("Trawa", 50);
-    public static ParameterModel hareParameter = new ParameterModel("Zające", 20);
-    public static ParameterModel foxParameter = new ParameterModel("Lisy", 12);
+    private ParameterModel grassParameter;
+    private ParameterModel hareParameter;
+    private ParameterModel foxParameter;
 
     private JLabel timeLabel;
 
@@ -25,20 +23,11 @@ public class ControlPanel extends JPanel {
     private StartButton startButton;
     private StopButton stopButton;
 
+    private SimulationChart simulationChart;
+    private JButton chartButton;
+
     public ControlPanel() {
         System.out.println("Konstruktor - ControlPanel");
-    }
-
-    public static void setEditableParameters() {
-        grassParameter.setEditable(true);
-        hareParameter.setEditable(true);
-        foxParameter.setEditable(true);
-    }
-
-    public static void setNotEditableParameters() {
-        grassParameter.setEditable(false);
-        hareParameter.setEditable(false);
-        foxParameter.setEditable(false);
     }
 
     @PostConstruct
@@ -47,8 +36,6 @@ public class ControlPanel extends JPanel {
 
         setPreferredSize(new Dimension(ProgramData.frameWidth - ProgramData.maxWidth - 50,
                 ProgramData.frameHeight));
-
-        JButton chartButton = new JButton("Wykres");
 
         chartButton.addActionListener(e -> simulationChart.setVisible(true));
 
@@ -76,5 +63,25 @@ public class ControlPanel extends JPanel {
 
     public void setTimeLabel(JLabel timeLabel) {
         this.timeLabel = timeLabel;
+    }
+
+    public void setSimulationChart(SimulationChart simulationChart) {
+        this.simulationChart = simulationChart;
+    }
+
+    public void setGrassParameter(ParameterModel grassParameter) {
+        this.grassParameter = grassParameter;
+    }
+
+    public void setHareParameter(ParameterModel hareParameter) {
+        this.hareParameter = hareParameter;
+    }
+
+    public void setFoxParameter(ParameterModel foxParameter) {
+        this.foxParameter = foxParameter;
+    }
+
+    public void setChartButton(JButton chartButton) {
+        this.chartButton = chartButton;
     }
 }
